@@ -2,6 +2,8 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+import static java.lang.System.lineSeparator;
+
 public class Job {
 
     private int id;
@@ -103,18 +105,18 @@ public class Job {
     @Override
     public String toString() {
 
-        String newLine = System.lineSeparator();
-        String idString = "ID: " + id + newLine;
-        String nameString = "Name: " + (name.isEmpty() ? noData : name) + newLine;
-        String employerString = "Employer: " + checkDataAvailability(employer.getValue()) + newLine;
-        String locationString = "Location: " + checkDataAvailability(location.getValue()) + newLine;
-        String positionTypeString = "Position Type: " + checkDataAvailability(positionType.getValue()) + newLine;
-        String coreCompetencyString = "Core Competency: " + checkDataAvailability(coreCompetency.getValue());
+        String newLine = lineSeparator();
+        String idLine = "ID: " + id + newLine;
+        String nameLine = "Name: " + (name.isEmpty() ? noData : name) + newLine;
+        String employerLine = "Employer: " + checkDataAvailability(employer.getValue()) + newLine;
+        String locationLine = "Location: " + checkDataAvailability(location.getValue()) + newLine;
+        String positionTypeLine = "Position Type: " + checkDataAvailability(positionType.getValue()) + newLine;
+        String coreCompetencyLine = "Core Competency: " + checkDataAvailability(coreCompetency.getValue()) + newLine;
 
         if (name.isEmpty() & employer.getValue().isEmpty() && location.getValue().isEmpty() && positionType.getValue().isEmpty() && coreCompetency.getValue().isEmpty()) {
             return "OOPS! This job does not seem to exist.";
         } else {
-            return newLine + idString + nameString + employerString + locationString + positionTypeString + coreCompetencyString + newLine;
+            return newLine + idLine + nameLine + employerLine + locationLine + positionTypeLine + coreCompetencyLine;
         }
     }
 }
