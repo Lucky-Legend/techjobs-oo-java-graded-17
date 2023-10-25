@@ -47,4 +47,56 @@ public class JobTest {
         assertFalse(job1.equals(job2));
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job = new Job("Product tester",
+                  new Employer("ACME"),
+                  new Location("Desert"),
+                  new PositionType("Quality control"),
+                  new CoreCompetency("Persistence"));
+        String newLine = System.lineSeparator();
+        String jobString = job.toString();
+        String[] lines = jobString.split(newLine);
+
+        assertEquals("", lines[0]);
+        assertEquals(true, job.toString().endsWith(newLine));
+
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
+        String newLine = System.lineSeparator();
+        String jobString = job.toString();
+        String[] lines = jobString.split(newLine);
+
+        assertEquals("ID: 1", lines[1]);
+        assertEquals("Name: Product tester", lines[2]);
+        assertEquals("Employer: ACME", lines[3]);
+        assertEquals("Location: Desert", lines[4]);
+        assertEquals("Position Type: Quality control", lines[5]);
+        assertEquals("Core Competency: Persistence", lines[6]);
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("Product tester",
+                new Employer(""),
+                new Location(""),
+                new PositionType(""),
+                new CoreCompetency(""));
+        String newLine = System.lineSeparator();
+        String jobString = job.toString();
+        String[] lines = jobString.split(newLine);
+
+
+        assertEquals("Employer: Data not available", lines[3]);
+        assertEquals("Location: Data not available", lines[4]);
+        assertEquals("Position Type: Data not available", lines[5]);
+        assertEquals("Core Competency: Data not available", lines[6]);
+    }
 }
